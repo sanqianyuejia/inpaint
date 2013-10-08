@@ -9,13 +9,12 @@
 #if !defined(BAGUO_ClsPicture_cpp)
 #define BAGUO_ClsPicture_cpp
 
-// #ifdef WIN32
-// 	#include  <io.h>
-// 	#include <direct.h>
-// #else
-// 	#include <sys/io.h>
-// #endif
-#include <io.h>
+#ifdef WIN32
+	#include  <io.h>
+#else
+	#include <sys/io.h>
+#endif
+//#include <io.h>
 #include "ClsPicture.h"
 using namespace baguo;
 

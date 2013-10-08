@@ -313,7 +313,8 @@ bool ClsApp::addWaterMark(ClsPicture *&src, ClsPicture *logo, MaskRect maskrect,
 	addWeighted(roi, 1.0, logo->_matdata, weight, 0, roi);
 
 	// 拷贝至目标
-	cvCopy(&(IplImage) tmp, src->_ipldst);
+	IplImage tmpIpl = (IplImage)tmp;
+	cvCopy(&tmpIpl, src->_ipldst);
 	
 	// 释放临时资源
 	tmp.release();
