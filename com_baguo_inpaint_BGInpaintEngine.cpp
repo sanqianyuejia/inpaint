@@ -11,12 +11,17 @@ JNIEXPORT jint JNICALL Java_com_baguo_inpaint_BGInpaintEngine_wbInpaint
 	const char *cDstFilepath = env->GetStringUTFChars(dstfilepath, 0);
 
 	// inpaint
-	wbInpaint(cSrcFilepath, cLogoFilepath, cDstFilepath);
+	if (wbInpaint(cSrcFilepath, cLogoFilepath, cDstFilepath) == false) {
+		// release file path strings
+		env->ReleaseStringUTFChars(srcfilepath, cSrcFilepath);
+		env->ReleaseStringUTFChars(logofilepath, cLogoFilepath);
+		env->ReleaseStringUTFChars(dstfilepath, cDstFilepath);
+		return 1;
+	}
 
 	// release file path strings
 	env->ReleaseStringUTFChars(srcfilepath, cSrcFilepath);
 	env->ReleaseStringUTFChars(logofilepath, cLogoFilepath);
 	env->ReleaseStringUTFChars(dstfilepath, cDstFilepath);
-
 	return 0;
 }
